@@ -24,8 +24,8 @@ RUN apk add --update --no-cache \
 
 # Define some versions
 ENV OPENCV_VERSION 3.1.0
-ENV WAGTAIL_VERSION 1.5.3
-ENV DJANGO_VERSION 1.9.8
+ENV WAGTAIL_VERSION 1.6
+ENV DJANGO_VERSION 1.10.0
 
 # Define compilers
 ENV CC /usr/bin/clang
