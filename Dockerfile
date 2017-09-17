@@ -1,4 +1,4 @@
-FROM apihackers/python3
+FROM alpine:edge
 
 # Add Edge and bleeding repos
 RUN echo -e '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories \
@@ -12,7 +12,6 @@ RUN apk add --update --no-cache \
     yaml \
     gettext \
     gsl \
-    libjasper \
     tiff \
     libwebp \
     libavc1394 \
@@ -20,12 +19,17 @@ RUN apk add --update --no-cache \
     imagemagick \
     libpq \
     libtbb@testing \
-    zlib
+    python3 \
+    zlib &&\
+    python3 -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip3 install --upgrade pip setuptools && \
+    rm -r /root/.cache
 
 # Define some versions
-ENV OPENCV_VERSION 3.1.0
-ENV WAGTAIL_VERSION 1.6
-ENV DJANGO_VERSION 1.10.0
+ENV OPENCV_VERSION 3.3.0
+ENV WAGTAIL_VERSION 1.12.1
+ENV DJANGO_VERSION 1.11.5
 
 # Define compilers
 ENV CC /usr/bin/clang
