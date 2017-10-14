@@ -1,25 +1,29 @@
 FROM alpine:edge
 
+MAINTAINER API Hackers
+
 # Add Edge and bleeding repos
 RUN echo -e '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories \
     && echo -e '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
 # Install permanent system depdencies
 RUN apk add --update --no-cache \
-    libpng \
-    libjpeg \
     bash \
-    yaml \
+    ca-certificates \
     gettext \
     gsl \
-    tiff \
-    libwebp \
+    gzip \
+    imagemagick \
     libavc1394 \
     libdc1394 \
-    imagemagick \
+    libjpeg \
+    libpng \
     libpq \
     libtbb@testing \
+    libwebp \
     python3 \
+    tiff \
+    yaml \
     zlib &&\
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -28,8 +32,8 @@ RUN apk add --update --no-cache \
 
 # Define some versions
 ENV OPENCV_VERSION 3.3.0
-ENV WAGTAIL_VERSION 1.12.1
-ENV DJANGO_VERSION 1.11.5
+ENV WAGTAIL_VERSION 1.12.2
+ENV DJANGO_VERSION 1.11.6
 
 # Define compilers
 ENV CC /usr/bin/clang
