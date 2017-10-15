@@ -3,10 +3,10 @@ FROM apihackers/wagtail:1.12
 MAINTAINER API Hackers
 
 # Install some circleci dependencies
-RUN apk add --update --no-cache jq openssh
+RUN apk add --update --no-cache jq openssh git curl && rm -fr /root/.cache
 
 # Enable remote debugging with ssh
-RUN /etc/init.d/sshd start
+# RUN rc-service sshd start
 
 COPY .bashrc /root/
 
@@ -19,4 +19,4 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM_VE
 RUN echo '\nset -e' >> /root/.bashrc
 
 # Upgrade to latest virtualenv version
-RUN pip install -U virtualenv
+RUN pip3 install -U virtualenv
