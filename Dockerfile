@@ -24,6 +24,15 @@ RUN apk add --update --no-cache \
     python3 \
     tiff \
     yaml \
+    python3-dev \
+    build-base \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    tiff-dev \
+    libwebp-dev \
+    imagemagick-dev \
+    zlib-dev \
+    postgresql-dev \
     zlib &&\
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -45,23 +54,14 @@ ENV LIBRARY_PATH=/lib:/usr/lib
 # Compile and install OpenCV for Python 3 and wagtail
 # Temporary install build dependencies
 RUN apk add --no-cache --virtual .build-deps@testing  \
-        python3-dev \
         curl \
         cmake \
         pkgconf \
         unzip \
-        build-base \
         libavc1394-dev \
-        libjpeg-turbo-dev \
-        libpng-dev \
         libdc1394-dev \
         clang \
         clang-dev \
-        tiff-dev \
-        libwebp-dev \
-        imagemagick-dev \
-        zlib-dev \
-        postgresql-dev \
         libtbb@testing \
         libtbb-dev@testing \
         linux-headers \
