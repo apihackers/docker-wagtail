@@ -19,6 +19,7 @@ RUN apk add --update --no-cache \
     libjpeg \
     libpng \
     libpq \
+    libpq-dev \
     libtbb@testing \
     libwebp \
     python3 \
